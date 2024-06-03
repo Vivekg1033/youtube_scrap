@@ -11,7 +11,7 @@ driver = webdriver.Chrome()
 driver.get("https://www.youtube.com")
 
 
-time.sleep(5)
+time.sleep(2)
 
 search_box = driver.find_element(By.NAME, "search_query")
 search_box.send_keys('song')
@@ -24,7 +24,7 @@ videos = driver.find_elements(By.XPATH, '//*[@id="video-title"]')
 
 video_info_list = []
 
-for video in videos[:100]:  # Limiting to first 10 results for example
+for video in videos[:100]:  
     title = video.get_attribute("title")
     url = video.get_attribute("href")
     video_info_list.append({
@@ -32,9 +32,8 @@ for video in videos[:100]:  # Limiting to first 10 results for example
         "url": url
     })
 
-# Print the collected information
+
 for video_info in video_info_list:
     print(f"Title: {video_info['title']}\nURL: {video_info['url']}\n")
 
-# Close the WebDriver
 driver.quit()
